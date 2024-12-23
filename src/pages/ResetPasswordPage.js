@@ -1,29 +1,47 @@
-import React, { useState } from 'react';
+// src/pages/ResetPasswordPage.js
 
-function ResetPasswordForm() {
+import React, { useState } from 'react';
+import { TextField, Button, Container, Typography, Box } from '@mui/material';
+
+function ResetPasswordPage() {
   const [email, setEmail] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Add password reset logic here (e.g., send email with reset link)
     console.log('Password reset requested for:', email);
+    // Add password reset logic here (e.g., API call to send reset link)
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <button type="submit">Reset Password</button>
-    </form>
+    <Container maxWidth="sm">
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ marginTop: 8 }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Reset Password
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          <Box mb={2}>
+            <TextField
+              fullWidth
+              label="Email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Box>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
+            Send Reset Link
+          </Button>
+        </form>
+      </Box>
+    </Container>
   );
 }
 
-export default ResetPasswordForm;
+export default ResetPasswordPage;
